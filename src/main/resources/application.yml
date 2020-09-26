@@ -1,0 +1,34 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: ${env:dev}
+  application:
+    name: alexss-desafio-bb-cotacao-api
+logging:
+  level:
+    com.alelo.adq.gal.rpt.accounting.api: DEBUG
+---
+spring:
+  profiles: dev
+  application:
+    name: alexss-desafio-bb-cotacao-api
+logging:
+  level:
+    com.alelo.adq.gal.rpt.accounting.api: DEBUG
+---
+spring:
+  profiles: hml
+  application:
+    name: alexss-desafio-bb-cotacao-api
+logging:
+  level:
+    com.alelo.adq.gal.rpt.accounting.api: INFO
+---
+spring:
+  profiles: prd
+  application:
+    name: alexss-desafio-bb-cotacao-api
+logging:
+  level:
+    com.alelo.adq.gal.rpt.accounting.api: INFO
