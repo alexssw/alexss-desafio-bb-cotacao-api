@@ -19,21 +19,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 @Validated
 @RestController
-@RequestMapping(value = "cotacao/dollar")
+@RequestMapping(value = "cotacao")
 @Api(value = "Desafio BB Cotação Dollar ", tags = {"Cotação Moeda Dollar"})
 @Slf4j
 public class CounterCurrencyController {
 
     private static final String DOLLAR_QUOTE_CHALLENGE_HEALTH_CHECK = "Desafio BB Cotação do Dollar - Health Check";
-    private static final String DATE_PATTERN = "dd/MM/yyyy";
+    private static final String DATE_PATTERN = "MM-dd-yyyy";
 
     @Autowired
     CounterCurrencyService counterCurrencyService;
-    private ModelMapper mapper;
+    private ModelMapper mapper = new ModelMapper();
 
     @RequestMapping(value = "/health",
             method = RequestMethod.GET,
@@ -49,14 +50,13 @@ public class CounterCurrencyController {
             @ApiResponse(code = 404, message = "404 Not Found."),
             @ApiResponse(code = 500, message = "500 Internal Server Error."),
     })
-    @ApiOperation(value = "Operation View Ajustes Manuais")
-    @RequestMapping(value = "/adjustView",
+    @ApiOperation(value = "Dollar Quote")
+    @RequestMapping(value = "/dollar",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public CounterCurrencyApi getAdjustViewReport(
             @RequestParam(name = "targetDate") @DateTimeFormat(pattern = DATE_PATTERN) LocalDate targetDate)
-            throws JsonProcessingException {
+            throws IOException {
         return mapper.map(counterCurrencyService.getCounterCurrency(targetDate), CounterCurrencyApi.class);
     }
-
 }

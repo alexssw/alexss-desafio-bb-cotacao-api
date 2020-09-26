@@ -8,6 +8,12 @@ spring:
 logging:
   level:
     com.alelo.adq.gal.rpt.accounting.api: DEBUG
+olinda:
+  service:
+    url: https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)
+    connect.timeout: 5000
+    read.timeout: 5000
+
 ---
 spring:
   profiles: dev

@@ -1,22 +1,29 @@
 package com.alexssw.desafio.bb.cotacao.api.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CounterCurrencyApi {
+public class CounterCurrencyApi implements Serializable {
+    @JsonProperty("id")
     private String id;
-    private LocalDateTime timestamp;
-    private LocalDate dateCounterCurrency;
+    @JsonProperty("requestTimestamp")
+    private String requestTimestamp;
+    @JsonProperty("dataCotacao")
+    private String dateQuotation;
+    @JsonProperty("cotacaoCompra")
     private BigDecimal purchasePrice;
+    @JsonProperty("cotacaoVenda")
     private BigDecimal salesQuote;
+    @JsonProperty("dataHoraCotacao")
+    private String dateTimeQuotation;
 }

@@ -27,6 +27,7 @@ repositories {
 
 ext {
     set('snippetsDir', file("build/generated-snippets"))
+    set('springCloudVersion', 'Hoxton.SR5')
 }
 
 dependencies {
@@ -35,6 +36,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-freemarker'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     implementation 'org.springframework.data:spring-data-commons'
@@ -42,6 +45,8 @@ dependencies {
 //    compile group: 'commons-collections', name: 'commons-collections4', version: '4.4'
     compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
     compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.7'
+
+//    compile group: 'org.odata4j', name: 'odata4j-core', version: '0.7.0'
 
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
@@ -58,6 +63,12 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.5.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
 test {
