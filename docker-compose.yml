@@ -1,13 +1,14 @@
 version: '3'
 
 services:
-  mysql-docker-container:
+  docker-mysql:
+    container_name: docker-mysql
     image: mysql:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=quota
-      - MYSQL_USER=userdb
-      - MYSQL_PASSWORD=userdb
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: quota
+      MYSQL_USER: userdb
+      MYSQL_PASSWORD: userdb
     restart: always
     ports:
       - 3306:3306
@@ -15,3 +16,16 @@ services:
       - 3306
     volumes:
       - /data/mysql
+  docker-application:
+    image: alexss-desafio-bb-cotacao-api-image
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      – docker-mysql
+    ports:
+      – 8087:8080
+    networks:
+      - web-application-network
+    volumes:
+      – /data/spring-boot-app
