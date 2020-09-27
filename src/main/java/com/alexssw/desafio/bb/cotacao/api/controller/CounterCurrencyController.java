@@ -33,7 +33,7 @@ public class CounterCurrencyController {
     private static final String DATE_PATTERN = "MM-dd-yyyy";
 
     @Autowired
-    CounterCurrencyService counterCurrencyService;
+    private CounterCurrencyService counterCurrencyService;
     private ModelMapper mapper = new ModelMapper();
 
     @RequestMapping(value = "/health",

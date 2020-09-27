@@ -64,9 +64,6 @@ public class OLindaBCBService {
         out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
         out.flush();
         out.close();
-//        connection.setRequestProperty(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
-//        connection.setConnectTimeout(targetConnectTimeout);
-//        connection.setReadTimeout(targetConnectTimeout);
         Integer responseCode = connection.getResponseCode();
 
         StringBuffer response = new StringBuffer();

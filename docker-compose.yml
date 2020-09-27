@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  mysql-docker-container:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=quota
+      - MYSQL_USER=userdb
+      - MYSQL_PASSWORD=userdb
+    restart: always
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    volumes:
+      - /data/mysql
